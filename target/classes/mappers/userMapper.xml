@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+
+
+<select id="userId" parameterType="com.demo.domain.UserVO" resultType="String">
+	SELECT name
+	FROM user
+	WHERE user_id = #{user_id}
+</select>
+
+
+<insert id="newUser" parameterType="com.demo.domain.UserVO">
+	INSERT INTO user(name, user_id, user_pw)
+	VALUES(#{name},#{user_id},#{user_pw})
+</insert>
+
+<select id="loginCheck" parameterType="com.demo.domain.LoginUser" resultType="com.demo.domain.LoginUser">
+	SELECT user_idx, name
+	FROM user
+	WHERE user_id=#{user_id} AND user_pw=#{user_pw}
+</select>
+
+<select id="userInfo" parameterType="Integer" resultType="com.demo.domain.UserVO">
+ 	SELECT name, user_id,user_idx
+ 	FROM user
+ 	WHERE user_idx = #{user_idx}
+</select> 
+
+<update id="updateUser" parameterType="com.demo.domain.UserVO" >
+ 	UPDATE user
+ 	SET user_pw =#{user_pw}
+ 	WHERE user_idx = #{user_idx}
+</update>
+
+</mapper>

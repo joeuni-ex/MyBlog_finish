@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reply">
+
+<!--댓글 목록 -->
+<select id="replyList" parameterType="int" resultType="com.demo.domain.ReplyVO">
+ SELECT reply_idx,
+		board_idx,
+		u.user_idx,
+		u.name,
+		content,
+		DATE_FORMAT(regDate,'%y-%m-%d') AS regDate
+ FROM reply r
+ JOIN user u
+ ON r.user_idx = u.user_idx
+ WHERE board_idx = #{board_idx}
+</select> 
+
+<!--댓글 작성-->
+<insert id="replyWrite" parameterType="com.demo.domain.ReplyVO">
+ INSERT INTO reply(board_idx,user_idx,content)
+ VALUE(#{board_idx},#{user_idx},#{content})
+</insert> 
+
+
+<!--댓글 수정-->
+<update id="relpyUpdate" parameterType="com.demo.domain.ReplyVO">
+UPDATE reply
+SET content =#{content}
+WHERE reply_idx =#{reply_idx} and board_idx=#{board_idx}
+</update>
+
+<!--댓글 삭제-->
+<delete id="replyDelete" parameterType="com.demo.domain.ReplyVO">
+DELETE FROM reply
+WHERE reply_idx =#{reply_idx} and board_idx=#{board_idx}
+</delete>
+
+<!--댓글 조회 -->
+<select id="searchReply" parameterType="Integer" resultType="com.demo.domain.ReplyVO">
+ SELECT reply_idx,
+		board_idx,
+		user_idx,
+		content
+FROM reply
+WHERE reply_idx =#{reply_idx}
+</select>
+
+</mapper>
