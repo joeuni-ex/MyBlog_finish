@@ -36,7 +36,7 @@
 			</div>
 		</div>
 		<div class="main_content2">
-			<h3>✨최근글</h3>
+			<h3>⭐최근글</h3>
 			<table class="board">
 				<thead>
 					<tr>
@@ -55,7 +55,7 @@
 				</tbody>
 			</table>
 			<hr />
-			<h3>❤️‍🔥인기글</h3>
+			<h3>🔥인기글</h3>
 			<table class="board">
 				<thead>
 					<tr>
